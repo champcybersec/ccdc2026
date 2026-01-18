@@ -29,6 +29,11 @@ New-NetFirewallRule -DisplayName "DNS Client" -Program "C:\Windows\system32\svch
 New-NetFirewallRule -DisplayName "Internal traffic out" -Direction Outbound -RemoteAddress "172.20.240.0" -Protocol TCP -Action Allow
 New-NetFirewallRule -DisplayName "Internal traffic out" -Direction Outbound -RemoteAddress "172.20.241.0" -Protocol TCP -Action Allow
 New-NetFirewallRule -DisplayName "Internal traffic out" -Direction Outbound -RemoteAddress "172.20.242.0" -Protocol TCP -Action Allow
+New-NetFirewallRule -DisplayName "LDAP-In-TCP" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 389 -RemoteAddress "172.20.240.0"
+New-NetFirewallRule -DisplayName "LDAP-In-UDP" -Direction Inbound -Action Allow -Protocol UDP -LocalPort 389 -RemoteAddress "172.20.240.0"
+New-NetFirewallRule -DisplayName "LDAPS-In-TCP" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 636 -RemoteAddress "172.20.240.0"
+New-NetFirewallRule -DisplayName "LDAP-GC-In-TCP" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 3268 -RemoteAddress "172.20.240.0"
+New-NetFirewallRule -DisplayName "LDAP-GC-SSL-In-TCP" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 3269 -RemoteAddress "172.20.240.0"
 
 # Critical services, only uncomment the ones you need
 # New-NetFirewallRule -DisplayName "HTTP server" -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow
