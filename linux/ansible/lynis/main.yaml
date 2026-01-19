@@ -1,0 +1,7 @@
+---
+- name: Lynis
+  hosts: all
+  tasks:
+    - name: Run Lynis
+      ansible.builtin.include_tasks: lynis.yaml
+      when: ansible_system == "Linux"
