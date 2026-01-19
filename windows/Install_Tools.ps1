@@ -18,3 +18,7 @@
 
 # Downloading Sysinternals Suite
 (New-Object System.Net.Webclient).DownloadFile('https://download.sysinternals.com/files/SysinternalsSuite.zip', (Get-Location).Path + '\SysSuite.zip')
+
+# Installs Malware Bytes
+(New-Object System.Net.Webclient).DownloadFile('https://downloads.malwarebytes.com/file/mb-windows?_gl=1*1uvwrxs*_gcl_au*MTQ2NTMwMjMzMi4xNzI5MDk1MDk4*_ga*MTg2MTY2MTg2OC4xNzI5MDk1MDk4*_ga_K8KCHE3KSC*MTcyOTA5NTA5OC4xLjEuMTcyOTA5NTEwOS40OS4wLjA.&_ga=2.231879703.96926975.1729095099-1861661868.1729095098', (Get-Location).Path + '\mbytes.exe')
+# C:\mbytes.exe /VERYSILENT /NORESTART
