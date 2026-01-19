@@ -10,3 +10,5 @@ echo
 
 echo "multi-scan with clamdscan --multiscan --fdpass -i /home/$USER"
 echo "-i only shows infected paths"
+
+clamscan -i -d Cobalt_Strike_and_Sliver.yara -r $1
