@@ -1,5 +1,23 @@
 #!/bin/bash
-usage() { echo "Usage: $0 [-E -L -t <int> -s <d | m> -p <string> -f <file> -o <file>]"; exit 1; }
+usage() {
+  cat <<EOF
+Usage: $0 [options]
+
+Options:
+  -E             Exclude /etc directories
+  -L             Exclude /var/log directories
+  -t <int>       Look back this many units for edits (use negative values; positive inputs are inverted)
+  -s <d|m>       Time scale: days (d) or minutes (m); default is days
+  -p <path>      Add an additional path to search
+  -f <file>      File containing newline-separated paths to search
+  -o <file>      Write results to the specified file instead of stdout
+
+Examples:
+  $0 -t -2                 # Files changed in the last 2 days
+  $0 -s m -t -30 -E -L     # Files changed in the last 30 minutes, skipping /etc and /var/log
+EOF
+  exit 1
+}
 
 #i know this looks absolutely atrocious but too lazy to see how to compact it
 

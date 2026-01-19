@@ -2,9 +2,9 @@
 checkBootFile=$1
 
 #first argument takes a file that contains complete service name(include ".service" to avoid grep grabbing similar entries)
-  #and expected boot status.
-  #service and boot status seperated by whitespace while entires and seperated by newline
-  #boot status can be: enabled, disabled, static, alias, transient, generated, indirect, masked, enabled-runtime
+#and expected boot status.
+#service and boot status seperated by whitespace while entires and seperated by newline
+#boot status can be: enabled, disabled, static, alias, transient, generated, indirect, masked, enabled-runtime
 
 serviceList=$(systemctl list-unit-files | awk -F' ' '{print $1,$2}')
 
