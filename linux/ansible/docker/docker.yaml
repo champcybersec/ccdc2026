@@ -1,4 +1,4 @@
-- name: Transfer docker script
+- name: transfer this jawn
   ansible.builtin.copy:
     src: linux/ansible/docker/local_docker.sh
     dest: /tmp/docker_enum.sh
@@ -7,6 +7,6 @@
   ansible.builtin.command: /tmp/docker_enum.sh
   changed_when: false
   register: docker_enum
-- name: Print the output
+- name: print this jawn
   ansible.builtin.debug:
     msg: "{{ docker_enum.stdout_lines }}"
