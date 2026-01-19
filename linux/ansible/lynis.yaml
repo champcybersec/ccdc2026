@@ -1,0 +1,28 @@
+- name: Make Sure Git Is Installed
+  ansible.builtin.package:
+    update_cache: true
+    name: git
+    state: present
+  become: true
+
+- name: Create opt Directory If Not Already Created
+  ansible.builtin.file:
+    path: /opt
+    state: directory
+    mode: "0755"
+  become: true
+- name: Install Lynis via git
+  become: true
+  ansible.builtin.git:
+    repo: 'https://github.com/CISOfy/lynis'
+    dest: /opt/lynis
+    version: master
+- name: Run System Audit
+  ansible.builtin.command: cd /opt/lynis && ./lynis audit system --nocolor
+  changed_when: false
+  become: true
+  register: lynis
+
+- name: Output Audit
+  ansible.builtin.debug:
+    var: lynis.stdout_lines
