@@ -1,9 +1,9 @@
-- name: Transfer the docker script
+- name: Transfer docker script
   ansible.builtin.copy:
-    src: scripts/unix/docker_info_local.sh
+    src: linux/ansible/docker/local_docker.sh
     dest: /tmp/docker_enum.sh
     mode: 0777
-- name: Run the script and produce the output
+- name: Run this jawn
   ansible.builtin.command: /tmp/docker_enum.sh
   changed_when: false
   register: docker_enum
