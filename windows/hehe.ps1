@@ -29,11 +29,32 @@ New-NetFirewallRule -DisplayName "DNS Client" -Program "C:\Windows\system32\svch
 New-NetFirewallRule -DisplayName "Internal traffic out" -Direction Outbound -RemoteAddress "172.20.240.0" -Protocol TCP -Action Allow
 New-NetFirewallRule -DisplayName "Internal traffic out" -Direction Outbound -RemoteAddress "172.20.241.0" -Protocol TCP -Action Allow
 New-NetFirewallRule -DisplayName "Internal traffic out" -Direction Outbound -RemoteAddress "172.20.242.0" -Protocol TCP -Action Allow
-New-NetFirewallRule -DisplayName "LDAP-In-TCP" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 389 -RemoteAddress "172.20.240.0"
-New-NetFirewallRule -DisplayName "LDAP-In-UDP" -Direction Inbound -Action Allow -Protocol UDP -LocalPort 389 -RemoteAddress "172.20.240.0"
-New-NetFirewallRule -DisplayName "LDAPS-In-TCP" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 636 -RemoteAddress "172.20.240.0"
-New-NetFirewallRule -DisplayName "LDAP-GC-In-TCP" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 3268 -RemoteAddress "172.20.240.0"
-New-NetFirewallRule -DisplayName "LDAP-GC-SSL-In-TCP" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 3269 -RemoteAddress "172.20.240.0"
+New-NetFirewallRule -DisplayName "Kerberos TCP" -Direction Inbound -Protocol TCP -LocalPort 88 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "Kerberos UDP" -Direction Inbound -Protocol UDP -LocalPort 88 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "LDAP TCP" -Direction Inbound -Protocol TCP -LocalPort 389 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "LDAP UDP" -Direction Inbound -Protocol UDP -LocalPort 389 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "LDAPS" -Direction Inbound -Protocol TCP -LocalPort 636 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "DNS TCP" -Direction Inbound -Protocol TCP -LocalPort 53 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "DNS UDP" -Direction Inbound -Protocol UDP -LocalPort 53 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "NTP" -Direction Inbound -Protocol UDP -LocalPort 123 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "SMB" -Direction Inbound -Protocol TCP -LocalPort 445 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "RPC Endpoint Mapper" -Direction Inbound -Protocol TCP -LocalPort 135 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "RPC High Ports" -Direction Inbound -Protocol TCP -LocalPort 49152-65535 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "Global Catalog" -Direction Inbound -Protocol TCP -LocalPort 3268 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "Global Catalog SSL" -Direction Inbound -Protocol TCP -LocalPort 3269 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "Kerberos TCP Outbound" -Direction Outbound -Protocol TCP -LocalPort 88 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "Kerberos UDP Outbound" -Direction Outbound -Protocol UDP -LocalPort 88 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "LDAP TCP Outbound" -Direction Outbound -Protocol TCP -LocalPort 389 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "LDAP UDP Outbound" -Direction Outbound -Protocol UDP -LocalPort 389 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "LDAPS Outbound" -Direction Outbound -Protocol TCP -LocalPort 636 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "DNS TCP Outbound" -Direction Outbound -Protocol TCP -LocalPort 53 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "DNS UDP Outbound" -Direction Outbound -Protocol UDP -LocalPort 53 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "NTP Outbound" -Direction Outbound -Protocol UDP -LocalPort 123 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "SMB Outbound" -Direction Outbound -Protocol TCP -LocalPort 445 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "RPC Endpoint Mapper Outbound" -Direction Outbound -Protocol TCP -LocalPort 135 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "RPC High Ports Outbound" -Direction Outbound -Protocol TCP -LocalPort 49152-65535 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "Global Catalog Outbound" -Direction Outbound -Protocol TCP -LocalPort 3268 -Action Allow -Profile Domain
+New-NetFirewallRule -DisplayName "Global Catalog SSL Outbound" -Direction Outbound -Protocol TCP -LocalPort 3269 -Action Allow -Profile Domain
 
 # Critical services, only uncomment the ones you need
 # New-NetFirewallRule -DisplayName "HTTP server" -Direction Inbound -LocalPort 80 -Protocol TCP -Action Allow
